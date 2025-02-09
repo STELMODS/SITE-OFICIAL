@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STELLMODS</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="logo">STELL MODS</div>
+        <ul class="nav-links">
+            <li><a href="#">INÍCIO</a></li>
+            <li><a href="#">HTML/CSS/JAVASCRIPT</a></li>
+            <li><a href="#">APK</a></li>
+            <li><a href="#" id="contact-btn">CONTACTO</a></li>
+            <li><a href="#">SOBRE</a></li>
+            <li><a href="#" id="login-btn">LOGIN</a></li>
+        </ul>
+        <div class="menu-button">☰</div>
+    </nav>
+
+    <div class="content">
+        <h2>AQUI VOCE APRENDERA MUITO</h2>
+        <h3>1° HTML/CSS/JAVASCRIPT</h3>
+        <img src="https://i.postimg.cc/mDXzyK1M/clipart4409582.png" width="350" height="250" alt="Imagem 1">
+        <h3>2° CONHECER FERRAMENTAS HACKER</h3>
+        <img src="https://i.postimg.cc/prVNR1s0/Picsart-25-01-31-11-55-29-463.png" width="250" height="250" alt="Imagem 2">
+    </div>
+
+    <!-- Modal Formulário de Contato -->
+    <div id="contact-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Entre em Contato</h2>
+            <form action="https://formsubmit.co/dstelio207@gmail.com" method="POST" class="form">
+                <label for="name">Nome</label>
+                <input type="text" name="name" id="name" required>
+
+                <label for="email">E-mail</label>
+                <input type="email" name="email" id="email" required>
+
+                <label for="message">Mensagem</label>
+                <textarea name="message" id="message" required></textarea>
+
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_next" value="https://seusite.com/obrigado.html">
+
+                <button type="submit">Enviar</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="menu.js"></script>
+    <script src="script.js"></script>
+    <script>
+        // Abrir e fechar o modal de contato
+        const contactBtn = document.getElementById('contact-btn');
+        const contactModal = document.getElementById('contact-modal');
+        const closeModal = document.querySelector('.modal .close');
+
+        contactBtn.addEventListener('click', (event) => {
+            event.preventDefault();
+            contactModal.style.display = 'flex';
+        });
+
+        closeModal.addEventListener('click', () => {
+            contactModal.style.display = 'none';
+        });
+
+        window.addEventListener('click', (event) => {
+            if (event.target === contactModal) {
+                contactModal.style.display = 'none';
+            }
+        });
+    </script>
+
+    <style>
+        /* Estilos do Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            width: 400px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            text-align: center;
+        }
+
+        .close {
+            position: absolute;
+            right: 15px;
+            top: 10px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        .form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .form input, .form textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form button {
+            background: #28a745;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+        }
+
+        .form button:hover {
+            background: #218838;
+        }
+    </style>
+
+
+<!-- Formulário de Registro -->
+<div id="registro-modal" class="modal">
+    <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2>Registro de Usuário</h2>
+        <form id="registroForm" class="form">
+            <label for="nome">Nome Completo</label>
+            <input type="text" id="nome" name="nome" placeholder="Seu nome" required>
+
+            <label for="email">E-mail</label>
+            <input type="email" id="email" name="email" placeholder="Seu email" required>
+
+            <label for="senha">Senha</label>
+            <input type="password" id="senha" name="senha" placeholder="Sua senha" required>
+
+            <button type="button" onclick="registrarUsuario()">Registrar</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    // Função para abrir e fechar o modal de registro
+    const registroModal = document.getElementById('registro-modal');
+    const closeModalRegistro = registroModal.querySelector('.close');
+    const loginBtn = document.getElementById('login-btn');
+
+    loginBtn.addEventListener('click', (event) => {
+        event.preventDefault();
+        registroModal.style.display = 'flex';
+    });
+
+    closeModalRegistro.addEventListener('click', () => {
+        registroModal.style.display = 'none';
+    });
+
+    window.addEventListener('click', (event) => {
+        if (event.target === registroModal) {
+            registroModal.style.display = 'none';
+        }
+    });
+
+    // Função para registrar o usuário
+    function registrarUsuario() {
+        const nome = document.getElementById("nome").value;
+        const email = document.getElementById("email").value;
+        const senha = document.getElementById("senha").value;
+
+        if (nome === "" || email === "" || senha === "") {
+            alert("Preencha todos os compos!");
+            return;
+        }
+
+        // Criar objeto do usuário
+        const usuario = {
+            nome: nome,
+            email: email,
+            senha: senha
+        };
+
+        // Armazenar no LocalStorage
+        localStorage.setItem(email, JSON.stringify(usuario));
+        alert("Registro efetuado com sucesso!");
+
+        // Limpar formulário e fechar o modal
+        document.getElementById("registroForm").reset();
+        registroModal.style.display = 'none';
+    }
+</script>
+
+</body>
+</html>
